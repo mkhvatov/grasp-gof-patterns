@@ -1,10 +1,35 @@
+from abc import ABC, abstractmethod
+
 from zeep import (
     Client,
     exceptions,
 )
 
 
-class Calculator:
+class BaseCalculator(ABC):
+
+    @abstractmethod
+    def add(self, a: int, b: int) -> int:
+        """Adds two numbers"""
+        pass
+
+    @abstractmethod
+    def divide(self, a: int, b: int) -> int:
+        """Divides number a by number b"""
+        pass
+
+    @abstractmethod
+    def multiply(self, a: int, b: int) -> int:
+        """Multiplies two numbers"""
+        pass
+
+    @abstractmethod
+    def subtract(self, a: int, b: int) -> int:
+        """Subtracts b from a"""
+        pass
+
+
+class Calculator(BaseCalculator):
     """Facade class for calculator web service (http://www.dneonline.com/calculator.asmx)"""
 
     WSDL = 'http://www.dneonline.com/calculator.asmx?WSDL'
